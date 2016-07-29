@@ -63,8 +63,5 @@ class CommentController extends Controller
  	return view('comment',compact('comments'));
   }
   
-  public function showComment(){
-  	$comments = DB::table('comments')->get();
-	return view('comment',compact('comments'));
-  }
+ 
 }

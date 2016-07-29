@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 
@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('comment');
+       $comments = DB::table('comments')->get();
+	return view('comment',compact('comments'));
     }
 }
