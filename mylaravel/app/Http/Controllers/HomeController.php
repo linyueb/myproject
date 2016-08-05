@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-       $comments = DB::table('comments')->get();
-	return view('comment',compact('comments'));
+    	$lists = DB::table('comments')->where('lastid', '0')->paginate(5);
+        $comments = DB::table('comments')->where('lastid','!=','0')->get();
+	return view('comment',['comments'=>$lists],['commentss'=>$comments]);
     }
 }

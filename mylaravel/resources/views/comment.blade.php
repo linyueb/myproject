@@ -17,16 +17,17 @@
                 <div class="panel-body">
                 	<?php $id=0 ?>
              		@forelse($comments as $comments1)            			
-             			@if($comments1->lastid==0)            			
+             			           			
     						<p style="font-size: 15px;color:cornflowerblue"> {{ $comments1->name }}
     						 	<span style="font-size:14px;color:#666666;margin-left:8px;">{{$comments1->created_at}}</span></p>
     						<p style="font-size:20px;">{{$comments1->content}}</p>
-    						@forelse($comments as $comments2)
+    						@forelse($commentss as $comments2)
     							@if($comments2->lastid==$comments1->id)
-    								<div style="border: dashed 1px #B0BEC5;margin-left:20px ;"><p style="margin-left:10px;font-size: 13px;color:cornflowerblue"> {{ $comments2->name }}
+    								<div style="border: dashed 1px #B0BEC5;margin-left:20px ;margin-top:10px ;"><p style="margin-left:10px;font-size: 13px;color:cornflowerblue"> {{ $comments2->name }}
     						 			<span style="font-size:14px;color:#666666;margin-left:8px;">{{$comments2->created_at}}</span></p>
     									<p style="margin-left:40px;font-size:18px;">{{$comments2->content}}</p>
     								</div>
+    								
     							@endif
     						@empty
     							
@@ -40,20 +41,23 @@
                            		</button></br>
                            	</div>
                            		</form>
+                           		<br/>
     							<a name="hui[]" onclick="remark({{$id++}})" style="text-align: right;color: red;" href="javascript:void(0)">回复</a>
     						<hr/>   						
-    					@endif	
-					@empty
-    					<span>Nothing.</span>
     					
+					@empty
+    					<p>没有评论</p>
 					@endforelse
-									
+						
+              <div style="margin:0 auto">{!! $comments->links() !!}</div>
                 </div>
+                	
               </div>
             </div>
         </div>
     </div>
 </div>
+
 <script>
 	function remark(id){
 		var id=id;

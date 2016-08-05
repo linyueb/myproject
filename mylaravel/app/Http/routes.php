@@ -18,9 +18,14 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/comment', 'HomeController@index');
+Route::get('/comment', 'CommentController@index');
 
 //Route::get('/comment', 'CommentController@showComment');
 //Route::post('/comment/', 'CommentController@index');
 Route::post('/comment', 'CommentController@addComment');
 Route::post('/comment1', 'CommentController@addComment1');
+Route::get('test',function(){
+	$user=new App\User();
+	$users=$user->all();
+	dd($users);
+});

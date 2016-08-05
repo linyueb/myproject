@@ -28,9 +28,9 @@ class CommentController extends Controller
 	
 	public function index()
     {
-        $input=Input::all();
-        	return $input;
-        
+        $lists = DB::table('comments')->where('lastid', '0')->paginate(5);
+        $comments = DB::table('comments')->where('lastid','!=','0')->get();
+		return view('comment',['comments'=>$lists],['commentss'=>$comments]);
 		
     }
 	
@@ -45,8 +45,9 @@ class CommentController extends Controller
 	DB::table('comments')->insert(
  	array('lastid'=>$lastid,'name' => $name, 'content' => $content,'created_at'=>$time)
  );
- 	$comments = DB::table('comments')->get();
- 	return view('comment',compact('comments'));
+ 	$lists = DB::table('comments')->where('lastid', '0')->paginate(5);
+    $comments = DB::table('comments')->where('lastid','!=','0')->get();
+	return view('comment',['comments'=>$lists],['commentss'=>$comments]);
   }
   
   public function addComment1(Request $request)
@@ -59,9 +60,10 @@ class CommentController extends Controller
 	DB::table('comments')->insert(
  	array('lastid'=>$lastid,'name' => $name, 'content' => $content,'created_at'=>$time)
  );
- 	$comments = DB::table('comments')->get();
- 	return view('comment',compact('comments'));
+ 	$lists = DB::table('comments')->where('lastid', '0')->paginate(5);
+    $comments = DB::table('comments')->where('lastid','!=','0')->get();
+	return view('comment',['comments'=>$lists],['commentss'=>$comments]);
   }
   
- 
+
 }
